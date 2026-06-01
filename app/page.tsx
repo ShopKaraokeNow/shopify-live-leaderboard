@@ -1,6 +1,3 @@
-<div className="text-3xl font-black tracking-[3px] text-yellow-300 drop-shadow-[0_0_20px_#facc15]">
-  LIVE SPOTLIGHT LEADERBOARD
-</div>
 "use client";
 
 import { useEffect, useState } from "react";
