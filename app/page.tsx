@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import confetti from "canvas-confetti";
 
 type LeaderboardEntry = {
   participant_name: string;
@@ -50,70 +49,64 @@ export default function KaraokeLeaderboardWidget() {
   }, []);
 
   return (
-    <div className="bg-[#0a061f] text-white font-sans overflow-hidden border border-purple-900">
-      {/* Header */}
-      <div className="bg-gradient-to-r from-purple-950 via-[#1a1033] to-purple-950 p-6 text-center border-b-4 border-yellow-400">
-        <div className="text-3xl font-black tracking-[3px] text-yellow-300 drop-shadow-[0_0_20px_#facc15]">
+    <div style={{ backgroundColor: '#0a061f', color: 'white', fontFamily: 'system-ui, sans-serif', border: '1px solid #6b21a8', borderRadius: '12px', overflow: 'hidden' }}>
+      <div style={{ background: 'linear-gradient(to right, #1e0533, #3b0764, #1e0533)', padding: '24px', textAlign: 'center', borderBottom: '4px solid #eab308' }}>
+        <div style={{ fontSize: '28px', fontWeight: '900', letterSpacing: '2px', color: '#fcd34d' }}>
           LIVE SPOTLIGHT LEADERBOARD
         </div>
-        <div className="text-purple-300 mt-2 text-lg font-medium">{getCurrentEventHashtag()}</div>
+        <div style={{ color: '#c4b5fd', marginTop: '8px', fontSize: '17px' }}>
+          {getCurrentEventHashtag()}
+        </div>
       </div>
 
-      <div className="p-6 space-y-4">
+      <div style={{ padding: '24px' }}>
         {loading && entries.length === 0 ? (
-          <div className="text-center py-20">
-            <div className="animate-spin h-12 w-12 mx-auto border-4 border-purple-600 border-t-yellow-400 rounded-full"></div>
-            <p className="text-purple-400 mt-6">The stage is lighting up...</p>
+          <div style={{ textAlign: 'center', padding: '60px 20px' }}>
+            <div style={{ display: 'inline-block', width: '48px', height: '48px', border: '5px solid #6b21a8', borderTopColor: '#eab308', borderRadius: '50%', animation: 'spin 1s linear infinite' }}></div>
+            <p style={{ color: '#c4b5fd', marginTop: '20px' }}>The stage is lighting up...</p>
           </div>
         ) : entries.length === 0 ? (
-          <div className="text-center py-20 text-purple-400">
+          <div style={{ textAlign: 'center', padding: '60px 20px', color: '#c4b5fd' }}>
             No entries yet this month...
           </div>
         ) : (
           entries.slice(0, 8).map((entry, index) => (
-            <div
-              key={index}
-              className={`group flex items-center gap-5 bg-gradient-to-r from-[#1a1033] to-black border rounded-2xl p-5 transition-all hover:scale-[1.02] ${
-                index === 0 
-                  ? 'border-yellow-400 shadow-2xl shadow-yellow-400/50 bg-gradient-to-r from-purple-900 to-black' 
-                  : 'border-purple-800 hover:border-purple-600'
-              }`}
-            >
-              <div className="w-10 text-center font-black text-4xl text-yellow-300">
+            <div key={index} style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '20px',
+              background: index === 0 ? 'linear-gradient(to right, #3b0764, #1e0533)' : '#1a1033',
+              border: index === 0 ? '2px solid #eab308' : '1px solid #6b21a8',
+              borderRadius: '12px',
+              padding: '18px',
+              marginBottom: '12px'
+            }}>
+              <div style={{ width: '40px', textAlign: 'center', fontSize: '32px', fontWeight: '900', color: '#fcd34d' }}>
                 {index + 1}
               </div>
 
-              <div className="w-16 h-16 rounded-xl overflow-hidden border-2 border-purple-700 flex-shrink-0 shadow-inner">
-                <img 
-                  src={entry.thumbnail_url} 
-                  alt={entry.participant_name}
-                  className="w-full h-full object-cover"
-                />
+              <div style={{ width: '64px', height: '64px', borderRadius: '10px', overflow: 'hidden', border: '2px solid #6b21a8' }}>
+                <img src={entry.thumbnail_url} alt={entry.participant_name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
               </div>
 
-              <div className="flex-1 min-w-0">
-                <a 
-                  href={entry.fb_post_url} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="font-semibold text-lg hover:text-yellow-300 transition-colors block"
-                >
+              <div style={{ flex: 1 }}>
+                <a href={entry.fb_post_url} target="_blank" rel="noopener noreferrer" style={{ color: 'white', fontSize: '18px', fontWeight: '600' }}>
                   {entry.participant_name}
                 </a>
               </div>
 
-              <div className="text-right">
-                <div className="text-4xl font-bold text-yellow-300 tracking-tighter">
+              <div style={{ textAlign: 'right' }}>
+                <div style={{ fontSize: '32px', fontWeight: '700', color: '#fcd34d' }}>
                   {entry.score}
                 </div>
-                <div className="text-xs uppercase text-purple-500 tracking-widest">POINTS</div>
+                <div style={{ fontSize: '11px', textTransform: 'uppercase', color: '#a78bfa' }}>POINTS</div>
               </div>
             </div>
           ))
         )}
       </div>
 
-      <div className="text-center text-xs text-purple-500 py-4 border-t border-purple-900 bg-black">
+      <div style={{ textAlign: 'center', padding: '14px', fontSize: '12px', color: '#a78bfa', backgroundColor: '#0a061f' }}>
         LIVE SPOTLIGHT COMPETITION • UPDATES EVERY 30s
       </div>
     </div>
