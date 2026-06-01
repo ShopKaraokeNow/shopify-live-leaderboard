@@ -9,11 +9,15 @@ const nextConfig = {
         headers: [
           {
             key: 'X-Frame-Options',
-            value: 'ALLOW-FROM https://*.myshopify.com'
+            value: 'ALLOWALL'
           },
           {
             key: 'Content-Security-Policy',
-            value: "frame-ancestors 'self' https://*.myshopify.com https://*.shopify.com https://shopify-live-leaderboard.vercel.app"
+            value: "frame-ancestors *"
+          },
+          {
+            key: 'Access-Control-Allow-Origin',
+            value: '*'
           }
         ]
       }
@@ -21,5 +25,4 @@ const nextConfig = {
   }
 };
 
-module.exports = nextConfig;
 module.exports = nextConfig;
