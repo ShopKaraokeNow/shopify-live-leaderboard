@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
-// @ts-ignore
 import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Live Spotlight Leaderboard",
-  description: "Karaoke Spotlight Competition",
+  description: "Monthly Karaoke Competition",
   icons: {
     icon: "/favicon.ico",
   },
